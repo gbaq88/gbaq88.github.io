@@ -6,10 +6,7 @@ description: "0x00 - breaking things to understand them"
 
 <style>
 body {
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-  max-width: 1200px;
+  margin: 0;
   background-color: black;
   color: #00ff00;
   font-family: monospace;
@@ -17,61 +14,51 @@ body {
 }
 
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  overflow-y: auto;
   background-color: black;
-  border-right: 1px solid #00ff00;
-  width: 220px;
-  padding: 20px;
-  order: 0;
-}
-
-main {
-  margin-left: 240px;
-  padding: 20px;
-  flex: 1;
-  max-width: 900px;
-  min-width: 400px;
-  box-sizing: border-box;
-  order: 1;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav li {
-  margin: 10px 0;
+  border-bottom: 1px solid #00ff00;
+  padding: 10px 20px;
+  display: flex;
+  gap: 20px;
 }
 
 nav a {
   color: #00ff00;
   text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
 pre {
   margin: 0 0 20px 0;
+  line-height: 1.1em;
+  background-color: #111;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+h3 {
+  margin-top: 40px;
+  color: #00cc00;
 }
 </style>
 
 <nav>
-  <ul>
-    <li><a href="/writeups/">Write-ups</a></li>
-    <li><a href="/artigos/">Artigos</a></li>
-    <li><a href="/estudos/">Estudos</a></li>
-  </ul>
+  <a href="/writeups/">Write-ups</a>
+  <a href="/artigos/">Artigos</a>
+  <a href="/estudos/">Estudos</a>
 </nav>
 
 <main>
-<pre style="line-height:1.1em;">
+<pre>
    ____ ____    _    _     _ 
   / ___| __ )  / \  | |   | |
  | |  _|  _ \ / _ \ | |   | |

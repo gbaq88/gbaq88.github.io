@@ -36,3 +36,9 @@ Além de :
 ttp-title: Did not follow redirect to http://cybercrafted.thm/
 
 Para partir para enumeração dos serviços que rodam em cada porta, principalmente a http (80). Vou adcionar o dominio encontrado, no arquivo host da minha máquina. Para que o ip do alvo seja resolvido nesse diretório e não procurar por um servidor externo.
+
+<img width="753" height="445" alt="image" src="https://github.com/user-attachments/assets/873b7f45-96f4-41b9-9b51-ffc5f114a9d9" />
+
+# Enumeration
+
+Para enumeração, vou iniciar indo ao navegador e verificar o que roda na porta 80 de serviço/aplicação.

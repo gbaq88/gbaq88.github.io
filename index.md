@@ -8,7 +8,8 @@ description: "0x00 - breaking things to understand them"
 body {
   display: flex;
   flex-direction: row;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1200px;
   background-color: black;
   color: #00ff00;
   font-family: monospace;
@@ -32,6 +33,9 @@ main {
   margin-left: 240px;
   padding: 20px;
   flex: 1;
+  max-width: 900px;
+  min-width: 400px;
+  box-sizing: border-box;
   order: 1;
 }
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: gbaq88
-description: "0x00 - breaking things to understand them"
+description: ""Hacking, experiments, and lab notes""
 ---
 
 <style>
@@ -72,8 +72,8 @@ h3 {
 root@gbaq88:~# whoami
 gbaq88
 
-root@gbaq88:~# echo "hacker style blog online"
-hacker style blog online
+root@gbaq88:~# echo "w3lc0m3 t0 my n0t3s"
+w3lc0m3 t0 my n0t3s
 </pre>
 
 <h3>whoami...</h3>

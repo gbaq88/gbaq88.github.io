@@ -1,7 +1,7 @@
 ---
 layout: default
 title: gbaq88
-description: ""Hacking, experiments, and lab notes""
+description: "Hacking, experiments, and lab notes"
 ---
 
 <style>

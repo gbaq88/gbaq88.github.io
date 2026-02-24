@@ -72,7 +72,7 @@ Y8b d88P                     888
  "Y88P"                      888                     
 
 
-       welcome to the gbaq88 lab
+       welcome to the gbaq88 notes
 </pre>
 
 <pre>

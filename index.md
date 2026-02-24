@@ -79,10 +79,8 @@ w3lc0m3 t0 my n0t3s
 <h3>whoami...</h3>
 <ul>
 {% for post in site.posts %}
-  {% if forloop.first %}
-    <li><a href="{{ post.url }}">whoami ({{ post.date | date: "%Y-%m-%d" }})</a></li>
-  {% else %}
-    <li><a href="{{ post.url }}">{{ post.title }} ({{ post.date | date: "%Y-%m-%d" }})</a></li>
+  {% if post.title == "Whoami" %}
+    <li><a href="{{ post.url }}">whoami</a></li>
   {% endif %}
 {% endfor %}
 </ul>

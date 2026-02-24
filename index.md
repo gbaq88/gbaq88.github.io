@@ -41,19 +41,10 @@ nav a:hover {
 main {
   flex: 1;
   padding: 20px;
-  position: relative;
 }
 
-.cursor {
-  display: inline-block;
-  width: 10px;
-  background-color: #00ff00;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+pre {
+  margin: 0 0 20px 0;
 }
 </style>
 
@@ -71,7 +62,7 @@ main {
   / ___| __ )  / \  | |   | |
  | |  _|  _ \ / _ \ | |   | |
  | |_| | |_) / ___ \| |___| |___
-  \____|____/_/   \_\_____|_____|
+  \____|____/_/   \_\_____|_____|  
 
        welcome to the gbaq88 lab
 </pre>
@@ -82,14 +73,14 @@ gbaq88
 
 root@gbaq88:~# echo "hacker style blog online"
 hacker style blog online
-
-root@gbaq88:~# ls posts
-{% for post in site.posts %}
-- {{ post.title }} ({{ post.date | date: "%Y-%m-%d" }})
-{% endfor %}
 </pre>
 
-<span class="cursor">&nbsp;</span>
+<h3>Posts recentes:</h3>
+<ul>
+{% for post in site.posts %}
+  <li><a href="{{ post.url }}">{{ post.title }} ({{ post.date | date: "%Y-%m-%d" }})</a></li>
+{% endfor %}
+</ul>
 
 <p>
 <a href="https://github.com/gbaq88/gbaq88.github.io" target="_blank">View on GitHub</a>

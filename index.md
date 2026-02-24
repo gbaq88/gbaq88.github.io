@@ -76,7 +76,7 @@ root@gbaq88:~# echo "hacker style blog online"
 hacker style blog online
 </pre>
 
-<h3>Posts recentes:</h3>
+<h3>whoami...</h3>
 <ul>
 {% for post in site.posts %}
   <li><a href="{{ post.url }}">{{ post.title }} ({{ post.date | date: "%Y-%m-%d" }})</a></li>

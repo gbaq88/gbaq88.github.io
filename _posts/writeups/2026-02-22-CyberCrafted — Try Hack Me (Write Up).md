@@ -1,3 +1,9 @@
+---
+layout: post
+title: "CyberCrafted — Try Hack Me (Write Up)"
+date: 2026-02-22 10:00:00
+categories: writeups
+---
 Resumo:
 
 A máquina apresentava inicialmente apenas duas portas abertas, 22 (SSH) e 80 (HTTP). A enumeração do serviço web revelou múltiplos subdomínios expostos — www, admin, store — ampliando significativamente a superfície de ataque. Durante a análise do subdomínio store, identifiquei um diretório de busca vulnerável a SQL Injection, que foi explorado utilizando o sqlmap, permitindo a extração de credenciais do banco de dados.

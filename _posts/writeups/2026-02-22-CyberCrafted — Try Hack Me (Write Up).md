@@ -16,11 +16,32 @@ Com acesso inicial obtido, avancei na enumeração do sistema, identificando um 
 A exploração destacou falhas clássicas: má configuração de subdomínios, vulnerabilidade de SQL Injection, armazenamento inseguro de credenciais e permissões sudo excessivas — um encadeamento realista de vetores comuns em ambientes mal configurados.
 
 Reconnaissance
+
 Para iniciar a fase de reconhecimento ultilizei o rustscan com as flags:
 
 -Pn : não realizar o three-way handshake.
+
 -sC: Procurar por scripts padrão para o serviço que esta rodando
 
 <img width="1020" height="298" alt="image" src="https://github.com/user-attachments/assets/15d94460-1709-43c7-8a61-1ece2f011af1" />
+
+Nesse scan, indentifiquei 3 portas abertas:
+
+22/tcp open ssh syn-ack
+
+80/tcp open http syn-ack
+
+25565/tcp open minecraft syn-ack
+
+Além de :
+
+ttp-title: Did not follow redirect to http://cybercrafted.thm/
+
+Para partir para enumeração dos serviços que rodam em cada porta, principalmente a http (80). Vou adcionar o dominio encontrado, no arquivo host da minha máquina. Para que o ip do alvo seja resolvido nesse diretório e não procurar por um servidor externo.
+
+<img width="754" height="449" alt="image" src="https://github.com/user-attachments/assets/ebfb260a-c7b3-40a4-9640-c8514352f035" />
+
+
+
 
 

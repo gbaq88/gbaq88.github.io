@@ -7,6 +7,7 @@ description: "0x00 - breaking things to understand them"
 <style>
 body {
   display: flex;
+  flex-direction: row;
   margin: 0;
   background-color: black;
   color: #00ff00;
@@ -15,9 +16,23 @@ body {
 }
 
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: black;
+  border-right: 1px solid #00ff00;
   width: 220px;
   padding: 20px;
-  border-right: 1px solid #00ff00;
+  order: 0;
+}
+
+main {
+  margin-left: 240px;
+  padding: 20px;
+  flex: 1;
+  order: 1;
 }
 
 nav ul {
@@ -36,11 +51,6 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
-}
-
-main {
-  flex: 1;
-  padding: 20px;
 }
 
 pre {

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Pivoting - Estudos"
-date: 2026-02-24
+date: 2026-03-22
 categories: estudos
 ---
 
@@ -19,7 +19,10 @@ Escalada de privilégios em ambientes distribuídos
 Encadeamento de compromissos (attack chaining) até ativos críticos
 
 Em ambientes corporativos, o pivoting geralmente explora a confiança implícita entre hosts internos e a falta de visibilidade ou inspeção de tráfego lateral, permitindo que o atacante opere “de dentro para fora” com maior furtividade e eficácia.
+
+<p align="center">
 <img width="707" height="404" alt="image" src="https://github.com/user-attachments/assets/10ba660b-3661-4118-b905-ccaa0914b071" />
+</p>
 
 Para esse estudo, vou ultilizar a room da plataforma Hacksmarter chamada PivotSmarter.Você pode encontrar esse lab no link https://www.hacksmarter.org/catalog.
 

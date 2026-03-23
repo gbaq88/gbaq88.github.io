@@ -87,7 +87,10 @@ Agora basta usar as credenciais fornecidas.
 
 <img width="697" height="273" alt="image" src="https://github.com/user-attachments/assets/15500e9f-4f73-446e-91b4-a76d0a22eb57" />
 
+Conclusão:
+O pivoting utilizando o Sliver demonstra, na prática, como o comprometimento inicial de um único host pode ser expandido para alcançar outros ativos em redes internas segmentadas. Por meio da criação de túneis, proxies e redirecionamento de portas, é possível contornar restrições de acesso e interagir com serviços que, originalmente, não estariam expostos ao atacante. Esse processo evidencia a importância da movimentação lateral como etapa crítica em cenários de pós-exploração.
 
+Além disso, a utilização de sessões interativas em conjunto com técnicas de pivoting reforça a capacidade de exploração profunda do ambiente, permitindo não apenas a enumeração de novos alvos, mas também sua exploração efetiva. Em um contexto real, isso destaca a necessidade de controles de segurança mais robustos, como segmentação adequada de rede, monitoramento de tráfego lateral e restrições de acesso entre hosts, a fim de mitigar esse tipo de ameaça e reduzir a superfície de ataque interna.
 
 
 

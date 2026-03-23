@@ -34,61 +34,87 @@ Dessa forma, técnicas de pivoting são empregadas para transformar a máquina c
 
 Como possuo credencial válida, já ultilizo o evil-winrm para esse acesso remoto.
 
+<p align="center">
 <img width="696" height="148" alt="image" src="https://github.com/user-attachments/assets/bc439d09-bd00-43bb-9480-d832961e0d5c" />
+</p>
 
 O Evil-WinRM é uma ferramenta que permite obter acesso remoto interativo a máquinas Windows via WinRM (Windows Remote Management), usando credenciais válidas, funcionando como um shell remoto para execução de comandos e pós-exploração.
 
 Como ja visto no print acima, o acesso foi confirmado. Então, para esse caso de estudo, vou ultilizar, para pos exploração, o Sliver C2. Ele pode ser encontrado nesse link https://github.com/BishopFox/sliver.
 
+<p align="center">
 <img width="699" height="355" alt="image" src="https://github.com/user-attachments/assets/1b5bf08c-e01a-493e-940c-ebbd1befcead" />
+</p>
 
 Já com o sliver-server iniciado, uso o comando generate para gerar um implant. Um implant é o binário/script que é entregue ao alvo, é executado na máquina comprometida que estabelece comunicação com o C2 e fornece acesso remoto (beacon ou session).
 
+<p align="center">
 <img width="672" height="205" alt="image" src="https://github.com/user-attachments/assets/6c2a83b3-b462-431f-900e-5127f93e3969" />
+</p>
 
 Para enviar o implant ao alvo comprometido, inicio um servidor local com o python. E ainda no Sliver inicio um ouvinte usando o comando mtls.
 
+<p align="center">
 <img width="432" height="252" alt="image" src="https://github.com/user-attachments/assets/ba18caaa-2cd5-472d-869f-a25ea1299d68" />
+</p>
 
 Com o acesso remoto, o comando Invoke-WebRequest foi ultilizado para baixar o implant direto do servidor python iniciado na máquina local. E logo após já executo ele usando o Start-Process.
 
+<p align="center">
 <img width="697" height="64" alt="image" src="https://github.com/user-attachments/assets/ee077216-ec06-4f46-babb-7c83f9ab588c" />
+</p>
 
 Logo após executar o binário, recebo a conexão no Sliver C2. 
 
+<p align="center">
 <img width="697" height="258" alt="image" src="https://github.com/user-attachments/assets/912fc6e9-6932-4e0d-bf6f-da3ec50599e1" />
+</p>
 
 Para interagir com essa conxão é ultilizado o comando "use id". 
 
+<p align="center">
 <img width="660" height="121" alt="image" src="https://github.com/user-attachments/assets/41dcfd84-22e2-4bbd-aa2d-f794ce2a1475" />
+</p>
 
 Para a realização de pivoting, é necessário dispor de uma sessão interativa, uma vez que o modo beacon opera de forma assíncrona e não suporta diretamente funcionalidades como tunelamento dinâmico (ex.: SOCKS proxy).
 
 Interactive - Esse comando instrui o implant a estabelecer uma conexão ativa e contínua com o servidor C2, permitindo execução de comandos em tempo real e habilitando recursos avançados de pós-exploração, como pivoting, port forwarding e criação de proxies.
 
+<p align="center">
 <img width="697" height="147" alt="image" src="https://github.com/user-attachments/assets/70a3900e-555f-4f36-b5ee-8daa1fd2264d" />
+</p>
 
 Agora posso fazer o pivoting, para isso vou ultilizar o portfoward.
 
+<p align="center">
 <img width="698" height="103" alt="image" src="https://github.com/user-attachments/assets/894e2d6a-5709-4755-8691-4b48bc04baf2" />
+</p>
 
 O comando portfwd add -b 127.0.0.1:8080 -r 10.1.91.55:80 no Sliver cria um encaminhamento de porta local (local port forwarding). Nesse caso, a porta 8080 da máquina atacante (localhost) é vinculada à porta 80 do host interno 10.1.91.55, utilizando o sistema comprometido como intermediário. Na prática, qualquer conexão feita para 127.0.0.1:8080 será automaticamente redirecionada através do túnel estabelecido até o servidor interno na porta HTTP.
 
 Dessa forma, ao acessar http://127.0.0.1:8080 no navegador, estarei indiretamente acessando o serviço web hospedado em 10.1.91.55:80, mesmo sem conectividade direta com essa rede. Esse mecanismo permite interagir com serviços internos de forma transparente, como se estivessem expostos localmente, sendo amplamente utilizado em cenários de pivoting para exploração de aplicações web, painéis administrativos e outros serviços restritos à rede interna.
 
+<p align="center">
 <img width="699" height="265" alt="image" src="https://github.com/user-attachments/assets/4535306c-dab9-4a7f-8021-7eda51f9453f" />
+</p>
 
 O objetivo foi conseguido. Usando o Windows Server, consigo acesso a rede interna e consequentemente acesso ao Web Server. Agora basta ultilizar o gobuster e fazer um bruteforce de diretório, com o objetivo de encontrar o diretório de login, para acessar o dashboard do usuário.
 
+<p align="center">
 <img width="698" height="236" alt="image" src="https://github.com/user-attachments/assets/1decb3a9-7bb9-4af1-8e26-6f4a147db5e9" />
+</p>
 
 Não demora muito e encontro o diretório login.html. Onde o titulo do diretório ja informar para que serve.
 
+<p align="center">
 <img width="696" height="301" alt="image" src="https://github.com/user-attachments/assets/6d6ce6cd-0db3-4557-b680-1ec42c7fc1e2" />
+</p>
 
 Agora basta usar as credenciais fornecidas para acessar o dashboard do usuário. E finalizar pegando a flag do laboratório.
 
+<p align="center">
 <img width="697" height="273" alt="image" src="https://github.com/user-attachments/assets/15500e9f-4f73-446e-91b4-a76d0a22eb57" />
+</p>
 
 Conclusão:
 

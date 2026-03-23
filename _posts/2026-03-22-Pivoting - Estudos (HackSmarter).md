@@ -55,6 +55,36 @@ Logo após executar o binário, recebo a conexão no Sliver C2.
 
 <img width="697" height="258" alt="image" src="https://github.com/user-attachments/assets/912fc6e9-6932-4e0d-bf6f-da3ec50599e1" />
 
+Para interagir com essa conxão é ultilizado o comando "use id". 
+
+<img width="660" height="121" alt="image" src="https://github.com/user-attachments/assets/41dcfd84-22e2-4bbd-aa2d-f794ce2a1475" />
+
+Para a realização de pivoting, é necessário dispor de uma sessão interativa, uma vez que o modo beacon opera de forma assíncrona e não suporta diretamente funcionalidades como tunelamento dinâmico (ex.: SOCKS proxy).
+
+Interactive - Esse comando instrui o implant a estabelecer uma conexão ativa e contínua com o servidor C2, permitindo execução de comandos em tempo real e habilitando recursos avançados de pós-exploração, como pivoting, port forwarding e criação de proxies.
+
+<img width="697" height="147" alt="image" src="https://github.com/user-attachments/assets/70a3900e-555f-4f36-b5ee-8daa1fd2264d" />
+
+Agora posso fazer o pivoting, para isso vou ultilizar o portfoward.
+
+<img width="698" height="103" alt="image" src="https://github.com/user-attachments/assets/894e2d6a-5709-4755-8691-4b48bc04baf2" />
+
+O comando prtfwd add -b 127.0.0.1:8080 -r 10.1.91.55:80 Agora, posso ir ao navegador e acessar o minha máquina local na porta 8080, que a conexão será encaminhada até a porta 80 da máquina pivotado na rede interna.
+
+<img width="699" height="265" alt="image" src="https://github.com/user-attachments/assets/4535306c-dab9-4a7f-8021-7eda51f9453f" />
+
+O objetivo foi conseguido. Usando o Windows Server, consigo acesso a rede interna e consequentemente acesso ao Web Server.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

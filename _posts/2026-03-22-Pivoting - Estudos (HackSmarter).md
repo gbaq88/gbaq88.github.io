@@ -46,7 +46,16 @@ Como ja visto no print acima, o acesso foi confirmado. Então, para esse caso de
 <img width="699" height="355" alt="image" src="https://github.com/user-attachments/assets/1b5bf08c-e01a-493e-940c-ebbd1befcead" />
 </p>
 
-Já com o sliver-server iniciado, uso o comando generate para gerar um implant. Um implant é o binário/script que é entregue ao alvo, é executado na máquina comprometida que estabelece comunicação com o C2 e fornece acesso remoto (beacon ou session).
+Com o Sliver Server devidamente inicializado, utiliza-se o comando generate para criar um implant, que é o artefato responsável por viabilizar a comunicação entre o alvo comprometido e a infraestrutura de comando e controle (C2). Esse implant pode ser gerado em diferentes formatos (executável, DLL, script, entre outros), de acordo com o sistema operacional e a estratégia de entrega.
+
+Uma vez executado na máquina alvo, o implant realiza a inicialização de sua rotina maliciosa, que inclui técnicas de evasão (como ofuscação e, em alguns casos, bypass de mecanismos de detecção), seguida do estabelecimento de uma conexão de saída (outbound) com o servidor C2 previamente configurado. Essa comunicação pode utilizar diferentes protocolos (como HTTP/HTTPS, mTLS, DNS, entre outros), permitindo contornar restrições de rede e aumentar a resiliência da operação.
+
+Após estabelecer o canal de comunicação, o implant pode operar em dois modos principais:
+
+Beacon (assíncrono): o agente realiza check-ins periódicos com o C2, aguardando instruções. Esse modelo reduz a visibilidade na rede e dificulta a detecção, pois não mantém uma conexão persistente.
+Session (interativo): o agente mantém uma conexão ativa e contínua com o C2, permitindo execução de comandos em tempo real, com maior interatividade e menor latência.
+
+A partir desse ponto, o operador passa a ter capacidade de execução remota de comandos, coleta de informações do sistema, movimentação lateral e outras ações pós-exploração, de acordo com as permissões e o contexto da máquina comprometida.
 
 <p align="center">
 <img width="672" height="205" alt="image" src="https://github.com/user-attachments/assets/6c2a83b3-b462-431f-900e-5127f93e3969" />

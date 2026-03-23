@@ -12,11 +12,11 @@ Do ponto de vista operacional, envolve o estabelecimento de mecanismos de encami
 
 Essa técnica é fundamental em cenários de pós-exploração, pois possibilita:
 
-Descoberta de novos hosts (network discovery) em redes internas
-Enumeração de serviços não expostos externamente
-Movimentação lateral (lateral movement) entre sistemas
-Escalada de privilégios em ambientes distribuídos
-Encadeamento de compromissos (attack chaining) até ativos críticos
+descoberta de novos hosts (network discovery) em redes internas,
+enumeração de serviços não expostos externamente,
+movimentação lateral (lateral movement) entre sistemas,
+escalada de privilégios em ambientes distribuídos,
+encadeamento de compromissos (attack chaining) até ativos críticos.
 
 Em ambientes corporativos, o pivoting geralmente explora a confiança implícita entre hosts internos e a falta de visibilidade ou inspeção de tráfego lateral, permitindo que o atacante opere “de dentro para fora” com maior furtividade e eficácia.
 

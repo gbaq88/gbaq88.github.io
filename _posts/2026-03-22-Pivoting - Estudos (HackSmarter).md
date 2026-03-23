@@ -53,6 +53,7 @@ Uma vez executado na máquina alvo, o implant realiza a inicialização de sua r
 Após estabelecer o canal de comunicação, o implant pode operar em dois modos principais:
 
 Beacon (assíncrono): o agente realiza check-ins periódicos com o C2, aguardando instruções. Esse modelo reduz a visibilidade na rede e dificulta a detecção, pois não mantém uma conexão persistente.
+
 Session (interativo): o agente mantém uma conexão ativa e contínua com o C2, permitindo execução de comandos em tempo real, com maior interatividade e menor latência.
 
 A partir desse ponto, o operador passa a ter capacidade de execução remota de comandos, coleta de informações do sistema, movimentação lateral e outras ações pós-exploração, de acordo com as permissões e o contexto da máquina comprometida.

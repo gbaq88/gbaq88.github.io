@@ -69,11 +69,23 @@ Agora posso fazer o pivoting, para isso vou ultilizar o portfoward.
 
 <img width="698" height="103" alt="image" src="https://github.com/user-attachments/assets/894e2d6a-5709-4755-8691-4b48bc04baf2" />
 
-O comando prtfwd add -b 127.0.0.1:8080 -r 10.1.91.55:80 Agora, posso ir ao navegador e acessar o minha máquina local na porta 8080, que a conexão será encaminhada até a porta 80 da máquina pivotado na rede interna.
+O comando portfwd add -b 127.0.0.1:8080 -r 10.1.91.55:80 no Sliver cria um encaminhamento de porta local (local port forwarding). Nesse caso, a porta 8080 da máquina atacante (localhost) é vinculada à porta 80 do host interno 10.1.91.55, utilizando o sistema comprometido como intermediário. Na prática, qualquer conexão feita para 127.0.0.1:8080 será automaticamente redirecionada através do túnel estabelecido até o servidor interno na porta HTTP.
+
+Dessa forma, ao acessar http://127.0.0.1:8080 no navegador, estarei indiretamente acessando o serviço web hospedado em 10.1.91.55:80, mesmo sem conectividade direta com essa rede. Esse mecanismo permite interagir com serviços internos de forma transparente, como se estivessem expostos localmente, sendo amplamente utilizado em cenários de pivoting para exploração de aplicações web, painéis administrativos e outros serviços restritos à rede interna.
 
 <img width="699" height="265" alt="image" src="https://github.com/user-attachments/assets/4535306c-dab9-4a7f-8021-7eda51f9453f" />
 
-O objetivo foi conseguido. Usando o Windows Server, consigo acesso a rede interna e consequentemente acesso ao Web Server.
+O objetivo foi conseguido. Usando o Windows Server, consigo acesso a rede interna e consequentemente acesso ao Web Server. Agora basta ultilizar o gobuster e fazer um bruteforce de diretório, com o objetivo de encontrar o diretório de login, para acessar o dashboard do usuário.
+
+<img width="698" height="236" alt="image" src="https://github.com/user-attachments/assets/1decb3a9-7bb9-4af1-8e26-6f4a147db5e9" />
+
+Não demora muito e encontro o diretório login.html. Onde o titulo do diretório ja informar para que serve.
+
+<img width="696" height="301" alt="image" src="https://github.com/user-attachments/assets/6d6ce6cd-0db3-4557-b680-1ec42c7fc1e2" />
+
+Agora basta usar as credenciais fornecidas.
+
+<img width="697" height="273" alt="image" src="https://github.com/user-attachments/assets/15500e9f-4f73-446e-91b4-a76d0a22eb57" />
 
 
 

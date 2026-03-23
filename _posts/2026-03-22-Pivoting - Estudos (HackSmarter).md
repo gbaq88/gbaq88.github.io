@@ -94,7 +94,12 @@ Interactive - Esse comando instrui o implant a estabelecer uma conexão ativa e 
 <img width="697" height="147" alt="image" src="https://github.com/user-attachments/assets/70a3900e-555f-4f36-b5ee-8daa1fd2264d" />
 </p>
 
-Agora posso fazer o pivoting, para isso vou ultilizar o portfoward.
+
+Agora podemos utilizar a funcionalidade de port forwarding, que cria um túnel de comunicação entre o operador e um serviço específico dentro da rede alvo. Na prática, o implant passa a atuar como um proxy, redirecionando o tráfego de uma porta local (na máquina do operador ou no servidor C2) para um host e porta internos da rede comprometida.
+
+Esse mecanismo permite, por exemplo, acessar serviços internos (como RDP, SSH, bancos de dados ou aplicações web) que estão expostos apenas na rede privada. O fluxo de comunicação ocorre de forma encapsulada através do canal já estabelecido com o C2, o que ajuda a contornar segmentações de rede e controles de firewall.
+
+Do ponto de vista técnico, o port forwarding estabelece um mapeamento entre uma porta local e um endpoint remoto, encapsulando os pacotes e encaminhando-os através do implant. Isso viabiliza a enumeração e interação com ativos internos de maneira transparente, como se o operador estivesse diretamente conectado à rede alvo, ampliando significativamente o alcance da operação pós-exploração.
 
 <p align="center">
 <img width="698" height="103" alt="image" src="https://github.com/user-attachments/assets/894e2d6a-5709-4755-8691-4b48bc04baf2" />

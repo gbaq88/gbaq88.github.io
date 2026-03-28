@@ -18,7 +18,7 @@ Acesso inicial: Uma fase de enumeração anterior produziu um banco de dados vaz
 
 Execução: Sua tarefa é aproveitar as credenciais comprometidas para aumentar privilégios, navegar lateralmente pelo Active Directory e, finalmente, obter um comprometimento completo do domínio.
 
-#Reconnaissance:
+# Reconnaissance:
 Como havia dito logo acima, durante o reconhecimento do alvo, a equipe conseguiu hash md5 vazadas. A partir dessa hash
 iriamos iniciar nosso pentest na rede coorporativa do cliente.
 
@@ -36,10 +36,22 @@ Muitas portas abertas, sinal que trata-se de um DC. Como no print acima e també
 
 
 
-#Weaponization:
+# Weaponization:
 Diante das credenciais vazadas, vou agora criar um arquivo com as hash md5 e outro arquivo com os usuários. Para que fique melhor para eu trabalhar com eles.
 <p align="center">
 <img width="701" height="457" alt="image" src="https://github.com/user-attachments/assets/c1bdbde7-32d3-46f0-8d6f-844dc56d6685" />
 </p>
+
+Usando o crackstation (https://crackstation.net/) para crackear a hash md5. Isso foi feito uma a uma.
+
+<p align="center">
+<img width="698" height="271" alt="image" src="https://github.com/user-attachments/assets/eaa467c1-e6b1-4d62-b9d2-fd99ba85aa4f" />
+</p>
+Conseguindo com todas aquelas hash, apenas 2 conseguimos crackear.
+
+<p align="center">
+<img width="697" height="224" alt="image" src="https://github.com/user-attachments/assets/7e7da0a4-9505-45b4-8db9-36ee1d8c7281" />
+</p>
+
 
 

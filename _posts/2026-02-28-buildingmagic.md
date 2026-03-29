@@ -109,7 +109,7 @@ Agora ja com a coletas de dados feita pelo netexec, inicio o bloodhound para uma
 <img width="699" height="286" alt="image" src="https://github.com/user-attachments/assets/dce05856-c3ab-4fde-b648-eb703032ac55" />
 </p>
 
-No bloodhound já encontro uma falha de permissão de ACL. ForceChangePassword é uma permissão no Active Directory que permite a um usuário resetar a senha de outro usuário sem saber a senha atual. Ou seja, o usuário que foi comprometido consegue resetar a senha de outro usuário, mesmo não sabendo a senha autal.
+No bloodhound já encontro uma falha de permissão de ACL. ForceChangePassword é uma permissão no Active Directory que permite a um usuário resetar a senha de outro usuário sem saber a senha atual. 
 
 A ferramenta Impacket (https://github.com/fortra/impacket) existe um módulo para explorar essa permissão errada. 
 

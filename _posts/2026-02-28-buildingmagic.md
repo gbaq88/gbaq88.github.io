@@ -159,4 +159,78 @@ E ao tentar se autenticar no servidor, estarei usando o responder para capturar 
 <img width="640" height="317" alt="image" src="https://github.com/user-attachments/assets/f6e20889-f61f-4c3f-9d43-481175865097" />
 </p>
 
+Agora vou subir o arquivo malicioso criado com o ntlm_left e esperar um usuário desavisado abrir e se autenticar para abrir o arquivo.
+
+<p align="center">
+<img width="468" height="196" alt="image" src="https://github.com/user-attachments/assets/926460c5-3e30-43ae-a7b6-994a7870cb54" />
+</p>
+
+E um pouco tempo depois, conseguimos capturar uma hash.
+
+<p align="center">
+<img width="699" height="103" alt="image" src="https://github.com/user-attachments/assets/c83d93b3-9f56-449a-91d2-ed3dce4afb92" />
+</p>
+
+Agora, salvo ela em um arquivo na minha máquina e vou usar o john para quebrar ela off-line.
+
+<p align="center">
+<img width="698" height="183" alt="image" src="https://github.com/user-attachments/assets/5597835d-4e5a-4e4c-b917-05f487e05bff" />
+</p>
+
+Ao validar o movimento lateral na rede, confirmei que tenho acesso remoto à máquina. E usando o evil-winrm já faço esse acesso remoto e pego a flag de usuário.
+
+<p align="center">
+<img width="699" height="274" alt="image" src="https://github.com/user-attachments/assets/bf5e9285-17c9-4c5a-acbe-cfaa68ca9052" />
+</p>
+
+E ao enumerar os privilégios do usuário comprometido, encontro o SeBackpPrivilege.
+
+"SeBackupPrivilege é um privilégio do Windows que permite a um usuário ler qualquer arquivo do sistema ignorando permissões de acesso, com o objetivo original de realizar backups."
+<p align="center">
+<img width="622" height="226" alt="image" src="https://github.com/user-attachments/assets/8ef1b74d-2a11-428a-b32c-ceae54ea05f4" />
+</p>
+
+Ou seja, com esse usuário consigo acessar arquivos protegidos (como SAM e NTDS) mesmo sem ser administrador, sendo frequentemente abusado para extrair credenciais e escalar privilégios.
+
+# Privilege Escalation
+
+Para explorar essa permissão, já crio um arquivo temporário. E baixo para ele os arquivos sam e system.
+
+Os arquivos SAM e SYSTEM são componentes críticos do Windows usados para armazenamento e proteção de credenciais.
+
+SAM (Security Account Manager): armazena os hashes de senha dos usuários locais da máquina.
+
+SYSTEM: contém informações do sistema, incluindo a chave (bootkey) usada para descriptografar os dados protegidos do SAM.
+<p align="center">
+<img width="667" height="520" alt="image" src="https://github.com/user-attachments/assets/f5fb884b-937d-4df5-a38e-6b497fdd670c" />
+</p>
+
+E usando o próprio evil-winrm, faço o download para a minha máquina.
+
+<p align="center>
+<img width="470" height="216" alt="image" src="https://github.com/user-attachments/assets/2596d6e7-4b2f-42ac-ad4d-f6cce85b1f43" />
+</p>
+
+"O Impacket, por meio do secretsdump, utiliza os arquivos SAM e SYSTEM para extrair credenciais do sistema Windows: ele primeiro obtém a bootkey presente no SYSTEM e a usa para descriptografar os dados protegidos do SAM, permitindo assim recuperar os hashes de senha (NTLM) dos usuários locais, que podem ser usados posteriormente para cracking ou ataques como pass-the-hash."
+
+<p align="center">
+<img width="694" height="283" alt="image" src="https://github.com/user-attachments/assets/3de78935-21e0-440f-8f73-e1b89297d8a4" />
+</p>
+
+Agora, com a hash do Administrator, posso fazer um pass-the-hash usando o evil-winrm.
+
+<p align="center">
+<img width="699" height="167" alt="image" src="https://github.com/user-attachments/assets/78078822-dcc8-4a0e-83df-7668dc098e1d" />
+</p>
+
+Mesmo após obter a hash do Administrator, o acesso via pass-the-hash falhou devido a restrições do serviço WinRM, evidenciando que nem toda credencial privilegiada garante acesso direto por todos os vetores. 
+<p align="center">
+<img width="700" height="120" alt="image" src="https://github.com/user-attachments/assets/94f5e05b-b917-4b09-a5a6-9f0d62545d63" />
+</p>
+Como alternativa, foi realizado password spraying, resultando na descoberta de um usuário com permissões adequadas para login remoto, permitindo a continuidade da exploração.
+<p align="center">
+<img width="699" height="306" alt="image" src="https://github.com/user-attachments/assets/392ef7b3-4179-4978-8d34-268784862a35" />
+</p>
+Além de acesso ao remoto, esse novo usuário ainda faz parte do grupo de administradores do dominio.
+
 

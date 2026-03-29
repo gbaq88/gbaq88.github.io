@@ -231,6 +231,21 @@ Como alternativa, foi realizado password spraying, resultando na descoberta de u
 <p align="center">
 <img width="699" height="306" alt="image" src="https://github.com/user-attachments/assets/392ef7b3-4179-4978-8d34-268784862a35" />
 </p>
-Além de acesso ao remoto, esse novo usuário ainda faz parte do grupo de administradores do dominio.
+Além de acesso ao remoto, esse novo usuário ainda faz parte do grupo de administradores do dominio. Então uso o evil-winrm para esse acesso remoto.
 
+<p align="center">
+<img width="698" height="208" alt="image" src="https://github.com/user-attachments/assets/eb504d80-7d8d-407d-8956-844429840ca0" />
+</p>
+
+E ja feito o acesso remoto, vou direto para a pasta do administrador buscar a flag de root.
+<p align="center">
+<img width="651" height="338" alt="image" src="https://github.com/user-attachments/assets/2536fb23-79d2-4d6b-9cf1-8dada7d844f4" />
+</p>
+
+# Conclusão:
+Este CTF demonstrou de forma prática como um ataque em ambiente Active Directory pode evoluir a partir de vetores aparentemente simples, como a quebra de hashes MD5 e password spraying, até técnicas mais avançadas como Kerberoasting, abuso de permissões (ForceChangePassword) identificado com BloodHound, e ataques MITM com Responder. A cadeia de exploração evidenciou que pequenas falhas de configuração e senhas fracas podem ser encadeadas de forma estratégica, permitindo movimentação lateral e aumento progressivo de privilégios dentro do domínio.
+
+Além disso, o desafio reforçou a importância de compreender o funcionamento interno do Windows, especialmente no abuso de privilégios como SeBackupPrivilege e na extração de credenciais via ferramentas como Impacket. Mesmo quando credenciais privilegiadas foram obtidas, limitações de acesso em serviços específicos exigiram adaptação da estratégia, como o uso de password spraying para encontrar um ponto de entrada viável. No geral, o CTF ilustra como a combinação de técnicas e a capacidade de adaptação são essenciais para alcançar o comprometimento completo de um ambiente corporativo.
+
+# ROMANOS 11:36
 

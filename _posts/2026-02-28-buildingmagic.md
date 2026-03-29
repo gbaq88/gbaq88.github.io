@@ -117,7 +117,7 @@ A ferramenta Impacket (https://github.com/fortra/impacket) existe um módulo par
 <img width="697" height="116" alt="image" src="https://github.com/user-attachments/assets/94f18882-c8f4-4e03-abde-b879b507d083" />
 </p>
 
-Na saída do comando, ele mostra que o reste de senha foi um sucesso, agora preciso apenas validar para confirmar mais um movimento lateral.
+Na saída do comando, ele mostra que o reset de senha foi um sucesso, agora preciso apenas validar para confirmar mais um movimento lateral.
 
 <p align="center">
 <img width="698" height="235" alt="image" src="https://github.com/user-attachments/assets/e5a2e900-74bb-46ec-9480-ace9c6d51da8" />
@@ -125,7 +125,7 @@ Na saída do comando, ele mostra que o reste de senha foi um sucesso, agora prec
 
 Mas um movimento lateral feito, analisando o bloodhound, não encontro algo que podemos explorar, seja para um privilege escalation, seja para outro movimento lateral. Além disso, não tenho acesso remoto para máquina. Então partir para o compartilhamento de rede.
 
-No compartilhamento de rede, tenho ler e escrever no diretório File-Share. Isso é bom pois posso usar o isso para capturar hash de usuário através de um ataque MITM. O ataque MITM com o Responder consiste em se posicionar na rede para responder a requisições de resolução de nomes (como LLMNR/NBT-NS) quando uma máquina não consegue encontrar um host. O atacante responde fingindo ser o destino solicitado e força a vítima a tentar autenticar nele via SMB/HTTP, capturando assim hashes NetNTLMv2. Esses hashes podem então ser quebrados offline ou usados em outros ataques, permitindo obter credenciais válidas sem precisar conhecer a senha diretamente.
+No compartilhamento de rede, tenho permissão para ler e escrever no diretório File-Share. Isso é bom pois posso usar o isso para capturar hash de usuário através de um ataque MITM. O ataque MITM com o Responder consiste em se posicionar na rede para responder a requisições de resolução de nomes (como LLMNR/NBT-NS) quando uma máquina não consegue encontrar um host. O atacante responde fingindo ser o destino solicitado e força a vítima a tentar autenticar nele via SMB/HTTP, capturando assim hashes NetNTLMv2. Esses hashes podem então ser quebrados offline ou usados em outros ataques, permitindo obter credenciais válidas sem precisar conhecer a senha diretamente.
 
 Para ter a certeza que consigo subir um arquivo para esse compartilhamento, crio um arquivo de teste.
 
@@ -133,13 +133,13 @@ Para ter a certeza que consigo subir um arquivo para esse compartilhamento, crio
 <img width="619" height="171" alt="image" src="https://github.com/user-attachments/assets/4d084330-6708-48c5-8c47-0be6f2d3d723" />
 </p>
 
-Agora vou usando o smbclient para acessar o comprtilhamento.
+Agora vou usando o smbclient para acessar o compartilhamento.
 
 <p align="center">
 <img width="699" height="222" alt="image" src="https://github.com/user-attachments/assets/e80e2e10-8030-4d1b-9f30-07f5bea68894" />
 </p>
 
-Agora vou subir, usando o compando put, o arquivo para o compartilhamento.
+Agora vou subir, usando o comando put, o arquivo para o compartilhamento.
 
 <p align="center">
 <img width="683" height="279" alt="image" src="https://github.com/user-attachments/assets/f1d676fc-4e6e-4b5f-9611-589dc85889ba" />
@@ -207,7 +207,7 @@ SYSTEM: contém informações do sistema, incluindo a chave (bootkey) usada para
 
 E usando o próprio evil-winrm, faço o download para a minha máquina.
 
-<p align="center>
+<p align="center">
 <img width="470" height="216" alt="image" src="https://github.com/user-attachments/assets/2596d6e7-4b2f-42ac-ad4d-f6cce85b1f43" />
 </p>
 

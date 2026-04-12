@@ -92,4 +92,55 @@ Password spraying é uma técnica de ataque onde você testa uma mesma senha com
 </p>
 
 # Exploration:
+Já com uma credencial válida, já posso fazer uma enumeração melhor. Como usar o smb para listar os usuários da rede. Para isso usei o netexec e a flag smb.
+
+<p align="center">
+<img width="698" height="255" alt="image" src="https://github.com/user-attachments/assets/8298142d-3cef-466d-8a70-71dbc2451310" />
+</p>
+
+E logo depois de listar os usuários, copio para um arquivo na minha máquina.
+
+<p align="center">
+<img width="440" height="299" alt="image" src="https://github.com/user-attachments/assets/140ae738-72f7-42fe-a791-19c7f7b6083c" />
+</p>
+
+Ataques comuns como Kerberoasting e AS-REP Roasting não obtiveram sucesso nesse cenário, exigindo a adoção de técnicas mais avançadas de enumeração e exploração dentro do ambiente Active Directory.
+
+<p align="center">
+<img width="694" height="184" alt="image" src="https://github.com/user-attachments/assets/1b8aac72-0b58-4b4c-995f-50cf83b2e58d" />
+</p>
+
+Assim como listar os compartilhamentos do AD que não mostrou nenhum arquivo suspeito.
+
+<p align="center">
+<img width="698" height="298" alt="image" src="https://github.com/user-attachments/assets/61b17d35-b678-49f8-bd58-0f32511866b3" />
+</p>
+
+# lateral moviment:
+
+Para coletar dados do AD e ultilizar o bloodhound, vou ultilizar o netexec.
+
+<p align="center">
+<img width="696" height="154" alt="image" src="https://github.com/user-attachments/assets/39df6466-9111-4526-8ef9-77865482ed1f" />
+</p>
+
+O BloodHound é uma ferramenta que mapeia relações e permissões no Active Directory para identificar caminhos de escalonamento de privilégios. Em campanhas de red team, deve ser usado com cautela porque sua coleta de dados (LDAP, SMB, sessões, ACLs) gera muito tráfego e eventos, podendo ser facilmente detectado por sistemas de monitoramento e defesa.
+
+<p align="center">
+<img width="698" height="299" alt="image" src="https://github.com/user-attachments/assets/cc187466-b9c0-4706-a5fa-84f979088cb6" />
+</p>
+
+O usuário karl.hackermann possui permissão GenericWrite sobre o objeto tom, o que significa que ele detém a capacidade de modificar atributos desse usuário no Active Directory. A permissão GenericWrite é um direito amplo de escrita que permite alterar diversos campos do objeto, como description, scriptPath, servicePrincipalName e, em alguns casos, até atributos relacionados à autenticação.
+
+Para explorar essa permissão, foi utilizado o script targeted Kerberoasting (targetedKerberoast.py), que permite abusar diretamente do direito GenericWrite sobre o usuário alvo. A técnica consiste em modificar o atributo servicePrincipalName (SPN) do usuário tom, adicionando um SPN controlado pelo atacante, tornando a conta elegível para requisições de tickets de serviço (TGS).
+
+Após a inclusão do SPN, o script solicita um TGS para o usuário modificado, permitindo a extração do ticket criptografado associado à conta. Esse ticket pode então ser submetido a técnicas de cracking offline para recuperação da senha em texto claro.
+
+<p align="center">
+<img width="701" height="257" alt="image" src="https://github.com/user-attachments/assets/c49e09e9-c42a-4da0-8367-3398c8ec9a96" />
+</p>
+
+Agora posso ultilizar o john para crackear offline.
+
+"O John the Ripper é uma ferramenta de quebra de senhas (password cracking) amplamente utilizada em segurança ofensiva. Ele funciona realizando ataques offline contra hashes, tentando descobrir a senha original através de técnicas como wordlists, regras de mutação e brute force."
 

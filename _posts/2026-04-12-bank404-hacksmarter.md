@@ -144,3 +144,29 @@ Agora posso ultilizar o john para crackear offline.
 
 "O John the Ripper é uma ferramenta de quebra de senhas (password cracking) amplamente utilizada em segurança ofensiva. Ele funciona realizando ataques offline contra hashes, tentando descobrir a senha original através de técnicas como wordlists, regras de mutação e brute force."
 
+<p align="center">
+<img width="696" height="217" alt="image" src="https://github.com/user-attachments/assets/f3b59bc1-c051-42bb-8b96-d93aea20de1c" />
+</p>
+
+E assim consigo a senha do usuário Tom, porém ainda tenho privilégios limitados. Então resolvo voltar para o bloodhound e enumerar o atributos do usuários.
+
+<p align="center">
+<img width="696" height="314" alt="image" src="https://github.com/user-attachments/assets/569eca70-9860-43c8-b92b-a7d3f9a15b78" />
+</p>
+
+ForceChangePassword é uma permissão no Active Directory que permite a um usuário resetar a senha de outro usuário sem saber a senha atual.
+
+A ferramenta Impacket (https://github.com/fortra/impacket) existe um módulo para explorar essa permissão errada.
+
+<p align="center">
+<img width="700" height="114" alt="image" src="https://github.com/user-attachments/assets/a74d0778-2826-4155-adc9-5716cdb82f0d" />
+</p>
+
+Confirmo que o comando deu certo, porém o usuário ainda tem poucos privilégios.
+
+<p align="center">
+<img width="700" height="171" alt="image" src="https://github.com/user-attachments/assets/838bf1c5-ffe9-46c6-954a-fffaee8838c8" />
+</p>
+
+
+

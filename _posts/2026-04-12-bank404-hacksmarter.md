@@ -162,11 +162,31 @@ A ferramenta Impacket (https://github.com/fortra/impacket) existe um módulo par
 <img width="700" height="114" alt="image" src="https://github.com/user-attachments/assets/a74d0778-2826-4155-adc9-5716cdb82f0d" />
 </p>
 
-Confirmo que o comando deu certo, porém o usuário ainda tem poucos privilégios.
+Confirmo que o comando deu certo, porém o usuário ainda tem poucos privilégios. E ainda sem acesso remoto.
 
 <p align="center">
 <img width="700" height="171" alt="image" src="https://github.com/user-attachments/assets/838bf1c5-ffe9-46c6-954a-fffaee8838c8" />
 </p>
+Não desistindo, fui ao bloodhound enumerar o usuário Robert.
 
+<p align="center">
+<img width="699" height="321" alt="image" src="https://github.com/user-attachments/assets/95bf0832-718a-48e0-9d94-cadc3eea4b79" />
+</p>
 
+Posso analisar que foi uma descoberta boa. Apesar de não esta no grupo do usuários remotos, posso adcionar qualquer um. Para verificar se é isso mesmo vou ultilizar o ultiliário net.
 
+"O utilitário net no Linux faz parte do pacote Samba e serve para interagir com serviços de rede Windows/SMB, especialmente em ambientes de Active Directory. Com ele, você consegue consultar usuários e grupos (net rpc group members, net rpc user), alterar senhas (net rpc password), enumerar recursos compartilhados (net rpc share), e até executar ações administrativas remotas dependendo das permissões. Na prática, ele funciona como uma “ponte” entre Linux e redes Windows, permitindo administrar contas e recursos SMB diretamente pelo terminal, sendo muito usado em auditorias, administração de domínios e cenários de pós-exploração."
+
+<p align="center">
+<img width="697" height="163" alt="image" src="https://github.com/user-attachments/assets/4b1400a6-d94b-41f8-a68d-704c12c98d3b" />
+</p>
+
+No print acima, primeiro verifiquei quais usuários estava no grupo dos usuários remotos. A saída do comando veio vazia, significando que não havia usuário com acesso RDP. No comando seguinte adcionei o próprio usuário robert ao grupo. Depois verifiquei novamente os usuários do grupo e lá estava o usuário Robert.
+
+<p align="center">
+<img width="699" height="420" alt="image" src="https://github.com/user-attachments/assets/9b223d58-aa90-4264-a35c-e92232c69ce5" />
+</p>
+
+Acessando remotamente o alvo, não foi encontrado nada de interessante com o usuário, mesmo enumerando os privilégios.
+
+Como tenho como mudar a senha de alguns usuários vou comecar a enumeração, primeiro jan.tresor

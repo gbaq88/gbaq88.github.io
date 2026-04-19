@@ -221,6 +221,19 @@ Então válido as credenciais na rede e logo depois usando o evil-winrm faço ac
 
 Enumerando o usuário não consegui nada interessante. Porém no bloodhound já encontro uma falha de permissão de ACL. ForceChangePassword é uma permissão no Active Directory que permite a um usuário resetar a senha de outro usuário sem saber a senha atual. Ou seja o usuário Daniel pode mudar a senha do usuário Webadmin sem precisar saber a senha dele.
 
+<p align="center">
+<img width="699" height="302" alt="image" src="https://github.com/user-attachments/assets/5e4b0cc1-b4e7-44d6-8617-ea5598832d83" />
+</p>
 
+Diante dessa permissão, volto ao comando net, porém usando as credenciais do usuário Daniel.
 
+<p align="center">
+<img width="697" height="135" alt="image" src="https://github.com/user-attachments/assets/57d2a4f0-132d-4843-a01c-f4efa0f2c281" />
+</p>
+
+Logo após alterar a senha, já uso os privilégios do usuário Robert para adcionar o Webadmin aos grupos de usuários para acesso remoto.
+
+<p align="center">
+<img width="698" height="164" alt="image" src="https://github.com/user-attachments/assets/adf7c47b-6b1b-4bb4-8805-6ab913749216" />
+</p>
 

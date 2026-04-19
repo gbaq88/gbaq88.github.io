@@ -336,4 +336,35 @@ Agora posso solicitar um certificado para se passar por outro usuário, como um 
 <img width="697" height="112" alt="image" src="https://github.com/user-attachments/assets/16b40d64-e268-4a6c-8378-f5946c8ed0aa" />
 </p>
 
+Agora uso a flag auth do Certipy com um arquivo .pfx, o objetivo é autenticar via PKINIT e extrair o hash NTLM do usuário associado Administrador.
+
+<p align="center">
+<img width="699" height="147" alt="image" src="https://github.com/user-attachments/assets/0a04f6f7-212e-4a73-9e78-5a7691bad382" />
+</p>
+
+"Pass-the-Hash (PtH) é uma técnica de autenticação em ambientes Windows/Active Directory em que, em vez de usar a senha em texto claro, você utiliza diretamente o hash NTLM de um usuário (por exemplo, de um administrador) para se autenticar em serviços que aceitam NTLM, como SMB, WMI ou WinRM. Como o protocolo valida o hash sem precisar da senha original, quem possui o hash pode “se passar” pelo usuário e acessar recursos com os mesmos privilégios, viabilizando movimentação lateral e execução remota."
+
+Para o pass-the-hash vou ultilizar o evil-winrm.
+
+<p align="center">
+<img width="696" height="418" alt="image" src="https://github.com/user-attachments/assets/e165a825-b846-4624-ab63-52f57029a356" />
+</p>
+
+No print acima mostra que o acesso via winrm foi feito, agora basta buscar a segunda flag, finalizando o lab.
+
+<p align="center">
+<img width="623" height="215" alt="image" src="https://github.com/user-attachments/assets/53eedac5-d0d0-4d1d-b491-4e0424c1d99f" />
+</p>
+
+Essa exploração do ESC4 pode ser encontrada nesse artigo. 
+
+https://medium.com/r3d-buck3t/adcs-attack-series-abusing-esc4-via-template-acls-for-privilege-escalation-98320f0da59a
+
+# Conclusão:
+
+Ao longo deste laboratório, foi possível observar como diferentes técnicas e ferramentas se conectam dentro de um cenário real de Active Directory, desde a obtenção de acesso inicial até a exploração de serviços como ADCS. O uso de ferramentas como Certipy e BloodHound evidencia como permissões aparentemente inofensivas podem ser encadeadas para alcançar níveis elevados de privilégio. A exploração de certificados, a autenticação via PKINIT e a obtenção de hashes NTLM demonstram que a superfície de ataque vai muito além de senhas fracas, envolvendo também configurações e relações internas do domínio.
+
+Por fim, técnicas como Pass-the-Hash reforçam a importância de proteger credenciais em todas as suas formas, não apenas senhas, mas também hashes e certificados. A combinação de má configuração, permissões excessivas e falta de monitoramento pode permitir que um atacante avance de forma silenciosa dentro do ambiente. Dessa forma, práticas como auditoria contínua, aplicação do princípio do menor privilégio e revisão de templates de certificados tornam-se essenciais para reduzir riscos e fortalecer a segurança em infraestruturas baseadas em Active Directory.
+
+# ROMANOS 11:36
 

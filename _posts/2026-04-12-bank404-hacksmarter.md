@@ -237,3 +237,94 @@ Logo após alterar a senha, já uso os privilégios do usuário Robert para adci
 <img width="698" height="164" alt="image" src="https://github.com/user-attachments/assets/adf7c47b-6b1b-4bb4-8805-6ab913749216" />
 </p>
 
+Como o usuário Webadmin ja tem acesso remoto, já posso fazer isso e começar a enumeração do mesmo.
+
+<p align="center">
+<img width="697" height="360" alt="image" src="https://github.com/user-attachments/assets/17c83d35-95dc-475d-bec0-fb81991eaa40" />
+</p>
+
+Feito a enumeração do alvo nada foi encontrado. Porém ao verificar se tinha algum serviço rodando localmente, encontrei um serviço rodando no porta 5000. Lembrei que no site, já havia uma dica sobre essa porta.
+
+<p align="center">
+<img width="615" height="326" alt="image" src="https://github.com/user-attachments/assets/421d53d5-1d69-46d8-b9db-178582a77165" />
+</p>
+<p align="center">
+<img width="286" height="337" alt="image" src="https://github.com/user-attachments/assets/d17240e7-684a-4b00-871f-f33faafc59fe" />
+</p>
+
+# Pivoting:
+
+"O Ligolo-ng é uma ferramenta de pivoting usada em testes de segurança para criar túneis entre a máquina do atacante e redes internas que normalmente não são acessíveis diretamente. Ele funciona com um modelo agent + proxy, onde o agente roda na máquina comprometida e o proxy no seu host, permitindo encaminhar tráfego como se você estivesse dentro da rede alvo. Diferente de soluções mais simples de port forwarding, o Ligolo pode criar uma interface virtual (TUN), possibilitando acesso completo à rede interna (varreduras, conexões SMB, RDP, etc.) de forma transparente, sendo muito útil em cenários de pós-exploração e movimentação lateral."
+
+Primeira movimento que faço é tranferir o agent para a máquina remota. Logo após inicio o proxy na minha máquina, podendo assim executar o agent e por fim o túnel é criado.
+
+<p align="center">
+<img width="702" height="349" alt="image" src="https://github.com/user-attachments/assets/1fd7de32-ee50-441b-9036-65095de92ead" />
+</p>
+
+Usando a interface proxy, na máquina local. Foi criada uma interface nova e logo depois adcionei uma rota para ela.
+
+<p align="center">
+<img width="700" height="390" alt="image" src="https://github.com/user-attachments/assets/c992dee4-9a61-41e7-a1cd-8a3a26f79d86" />
+</p>
+
+A rota nova aponta para rede interna do alvo, através do ip local da minha maquina local.
+
+Acessando o serviço rodando na máquina pelo navegador acho um arquivo zip.
+
+<p align="center">
+<img width="700" height="320" alt="image" src="https://github.com/user-attachments/assets/b1a5296d-2ca7-47a7-be47-0e175b21c067" />
+</p>
+
+Ao tentar descompactar o arquivo, é solicitado uma senha. Como não possuo uma senha válida para descompactar, vou ultilizar o ultilitário zip2john.
+
+"O zip2john é uma ferramenta que faz parte do John the Ripper e serve para extrair hashes de arquivos ZIP protegidos por senha. Em vez de tentar quebrar o ZIP diretamente, ele converte o conteúdo criptografado do arquivo em um formato que o John consegue processar. Depois disso, você usa o próprio John the Ripper para realizar ataques de força bruta ou dicionário e descobrir a senha do arquivo."
+
+<p align="center">
+<img width="697" height="424" alt="image" src="https://github.com/user-attachments/assets/f0074849-e695-4ffa-8f4d-4315ca22b596" />
+</p>
+
+E assim, consigo a senha para descompactar o arquivo. E ao descompactar encontro uma credencial para o usuário svc.services.
+
+<p align="center">
+<img width="700" height="374" alt="image" src="https://github.com/user-attachments/assets/b972bc57-ea6d-4f2e-bfb5-4c3e6f9c9817" />
+</p>
+
+Mas ao verificar, com auxilo do netexec, se a credencial é válida na rede. Descubro que ela é válida, porém esta desabilitada. 
+
+<p align="center">
+<img width="699" height="67" alt="image" src="https://github.com/user-attachments/assets/ee4256f6-5cf7-4575-a997-8f34ffbd652c" />
+</p>
+
+Mas para resolver esse obstáculo tem uma ferramenta, bloodyad.
+
+"O bloodad.py é uma ferramenta em Python voltada para interação e abuso de permissões em ambientes Active Directory via LDAP, muito usada em testes de segurança para automatizar ações administrativas quando o usuário possui privilégios sobre outros objetos. Diferente do BloodHound (que é focado em análise e visualização), o bloodad.py permite executar operações diretas como modificar atributos de usuários, adicionar membros a grupos ou alterar flags de contas."
+
+Nesse caso em particular, irei alterar a flag de desabilitado na conta svc.services.
+
+<p align="center">
+<img width="699" height="122" alt="image" src="https://github.com/user-attachments/assets/30135942-3147-424e-b5b0-cc719b86fd18" />
+</p>
+
+# Privilege Escalation:
+
+Com esse novo usuário, agora é possível realizar a enumeração do ADCS (Active Directory Certificate Services) utilizando o Certipy de forma mais completa e autenticada. Diferente de enumeração anônima ou limitada, uma conta válida permite consultar via LDAP e RPC informações detalhadas sobre Certificate Authorities (CAs), templates de certificado, permissões de inscrição (enrollment rights) e configurações potencialmente inseguras.
+
+"O Certipy é uma ferramenta voltada para análise e exploração de ambientes Active Directory Certificate Services (ADCS), permitindo enumerar autoridades certificadoras (CAs), templates de certificados e suas permissões. Ela funciona utilizando protocolos como LDAP e RPC para coletar informações detalhadas sobre configurações de certificados dentro do domínio, identificando possíveis falhas de segurança conhecidas (como ESC1–ESC8). Além da enumeração, o Certipy também pode solicitar certificados, autenticar via PKINIT e demonstrar cenários de abuso onde um usuário autenticado consegue escalar privilégios através de configurações incorretas em templates ou permissões excessivas, sendo amplamente utilizado em auditorias de segurança e testes de intrusão em ambientes AD."
+
+<p align="center">
+<img width="698" height="233" alt="image" src="https://github.com/user-attachments/assets/3825111a-19ca-4554-81da-275f040137e8" />
+</p>
+
+Ultilizando o certipy, na saída do comando me mostra que há uma vulnerabilidade ESC4 Nno ADCS.
+
+<p align="center">
+<img width="698" height="284" alt="image" src="https://github.com/user-attachments/assets/517f4a78-4250-4ab5-afc6-cb60242c071c" />
+</p>
+
+Para explorar essa vulnerabilidade, preciso modificar o modelo do certificado. E um do modelos é torna-lo vulnerável ao ESC1. O que permitiria personificar outro usuários, como o administrador.
+
+<p align="center">
+<img width="696" height="212" alt="image" src="https://github.com/user-attachments/assets/54d03694-a5de-466d-a5e4-828f7b44eb87" />
+</p>
+

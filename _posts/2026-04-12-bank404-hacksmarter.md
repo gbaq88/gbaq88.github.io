@@ -190,3 +190,37 @@ No print acima, primeiro verifiquei quais usuários estava no grupo dos usuário
 Acessando remotamente o alvo, não foi encontrado nada de interessante com o usuário, mesmo enumerando os privilégios.
 
 Como tenho como mudar a senha de alguns usuários vou comecar a enumeração, primeiro jan.tresor
+
+<p align="center">
+<img width="698" height="127" alt="image" src="https://github.com/user-attachments/assets/ca993e12-b515-4d35-ae3e-2234b3ce80ab" />
+</p>
+
+Uso o ultilitário net para alterar a senha do usuário e logo após usando o netexec verifico se o comando foi concretizado.
+
+<p align="center">
+<img width="698" height="135" alt="image" src="https://github.com/user-attachments/assets/b990a092-f0b8-4c90-907d-9dfd0b437e82" />
+</p>
+
+Logo após alterar a senha, adciono o usuário ao grupo Remote Desktop Users. Como mostra na saída, tenho dois usuários nesse grupo. Então hora de usar o rdp para acesso remoto.
+
+<p align="center">
+<img width="694" height="366" alt="image" src="https://github.com/user-attachments/assets/4894228e-86a6-48cc-83fc-e5b1173b8a4f" />
+</p>
+
+Ja no acesso remoto do usuário, já encontro que a lixeira esta cheia. E ao analisar a lixeira, encontro um e-mail contendo novas credenciais para um acesso.
+
+<p align="center">
+<img width="645" height="438" alt="image" src="https://github.com/user-attachments/assets/40da92d3-763d-4182-9806-2ba3791035ab" />
+</p>
+
+Então válido as credenciais na rede e logo depois usando o evil-winrm faço acesso remoto a máquina. E já concluo a primeira etapa pegando a flag de usuário.
+
+<p align="center">
+<img width="693" height="287" alt="image" src="https://github.com/user-attachments/assets/a9f25a5d-5034-41c0-9e73-8295a7b67916" />
+</p>
+
+Enumerando o usuário não consegui nada interessante. Porém no bloodhound já encontro uma falha de permissão de ACL. ForceChangePassword é uma permissão no Active Directory que permite a um usuário resetar a senha de outro usuário sem saber a senha atual. Ou seja o usuário Daniel pode mudar a senha do usuário Webadmin sem precisar saber a senha dele.
+
+
+
+

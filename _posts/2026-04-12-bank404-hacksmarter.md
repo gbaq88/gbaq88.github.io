@@ -328,3 +328,12 @@ Para explorar essa vulnerabilidade, preciso modificar o modelo do certificado. E
 <img width="696" height="212" alt="image" src="https://github.com/user-attachments/assets/54d03694-a5de-466d-a5e4-828f7b44eb87" />
 </p>
 
+Nesse comando ultilizo sinalizador chamado -write-default-configuration que aplica a configuração ESC1 padrão ao modelo de certificado. 
+
+Agora posso solicitar um certificado para se passar por outro usuário, como um administrador, especificando seu Nome Principal de Usuário (UPN).
+
+<p align="center">
+<img width="697" height="112" alt="image" src="https://github.com/user-attachments/assets/16b40d64-e268-4a6c-8378-f5946c8ed0aa" />
+</p>
+
+

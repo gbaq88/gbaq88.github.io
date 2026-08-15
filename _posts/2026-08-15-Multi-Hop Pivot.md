@@ -20,4 +20,17 @@ Há muitas formas, ferramentas e técnicas para executar essa "manobra", porém 
 <img width="723" height="534" alt="image" src="https://github.com/user-attachments/assets/c988b167-b300-468b-a481-f4dee713f087" />
 </p>
 
+Nesse artigo, vamos assumir que já conseguimos o acesso inicial a rede comprometendo uma máquina, com acesso administrador a ela. E na minha máquina parrot, verifico a instalação do ligolo-mp.
+
+<p align="center">
+<img width="680" height="401" alt="image" src="https://github.com/user-attachments/assets/04fd284a-ac2f-4d48-a69d-f6b210d02605" />
+</p>
+
+Como a instalação foi correta, agora apenas inicio ele, que vai abrir um painel de dashboard.
+
+<p align="center">
+<img width="1353" height="615" alt="image" src="https://github.com/user-attachments/assets/ee41bf57-3a7f-497e-99bc-f347e663124a" />
+</p>
+
+
 

@@ -13,3 +13,11 @@ Imagine que o invasor (atacante) está em uma rede externa. Ele compromete o Hos
 <p align="center">
 <img width="465" height="350" alt="image" src="https://github.com/user-attachments/assets/454f50ba-7b42-4e12-996c-e57f072a936f" />
 </p>
+
+Há muitas formas, ferramentas e técnicas para executar essa "manobra", porém nesse artigo vou esta usando o ligolo-mp (https://github.com/ttpreport/ligolo-mp).
+
+<p align="center">
+<img width="723" height="534" alt="image" src="https://github.com/user-attachments/assets/c988b167-b300-468b-a481-f4dee713f087" />
+</p>
+
+

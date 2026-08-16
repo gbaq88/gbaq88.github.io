@@ -116,5 +116,83 @@ Agora preciso apenas confirmar que tenho acesso a rede e a próxima máquina. Pa
 <img width="911" height="240" alt="image" src="https://github.com/user-attachments/assets/0faf4ce5-c1c1-45ca-8797-2df0a25e1d35" />
 </p>
 
+Como podemos ver, tenho acesso a maquina comprometida na rede 172.16.0.0/16. Na qual antes não tinhamos acesso. Certo, agora vou acessar via RDP essa máquina.
+
+<p align="center">
+<img width="1315" height="679" alt="image" src="https://github.com/user-attachments/assets/6083dd86-e480-4267-91bc-371f2561fe42" />
+</p>
+
+Acesso a maquina confirmado. E analisando as interfaces de rede, notamos que a maquina tem uma outra interface de rede, que provavelmente não temos acesso. Mas vou verificar e confirmar isso.
+
+<p align="center">
+<img width="847" height="234" alt="image" src="https://github.com/user-attachments/assets/bf0c0f81-9a0b-4788-83e8-113234855d73" />
+</p>
+
+Confirmado, não tenho acesso a outra rede da maquina. Então vou configurar o ligolo-mp para fazer um novo pivot.
+<p align="center">
+<img width="1360" height="645" alt="image" src="https://github.com/user-attachments/assets/82e0f52d-906e-494a-adc0-3df6f6f692ae" />
+</p>
+
+Agora vou adionar um redirector.
+<p align="center">
+<img width="440" height="327" alt="image" src="https://github.com/user-attachments/assets/df355e26-4914-459c-bb7b-5b779ed1e4be" />
+</p>
+
+Todo o tráfego recebido na porta 4444 será encaminhado para o IP e porta do servidor ligolo-mp (neste caso, para a máquina parrot) através do túnel TLS existente.
+<p align="center">
+<img width="1351" height="594" alt="image" src="https://github.com/user-attachments/assets/ef5494ef-16a3-4bb7-9274-8ef506235e10" />
+</p>
+
+Agora preciso criar um novo binario e transferir para essa maquina. O binário tem ser para a rede que a segunda maquina tem acesso a primeira
+<p align="center">
+<img width="837" height="562" alt="image" src="https://github.com/user-attachments/assets/7683b106-3b70-4a36-90ca-6ad8c3c50f78" />
+</p>
+
+E como no redirectory esta ouvindo na porta 4444 nosso binário tem que conectar nessa porta.
+<p align="center">
+<img width="806" height="397" alt="image" src="https://github.com/user-attachments/assets/71f0c0d5-e9d4-4a0e-9e11-fa29edad5982" />
+</p>
+
+Como podemos ver criei um novo binário e logo depois inicio ele para enviar para primeira maquina comprometida.
+<p align="center">
+<img width="906" height="295" alt="image" src="https://github.com/user-attachments/assets/b2c7df69-cf0a-4c9b-8836-fafc25029da2" />
+</p>
+
+E usando, outra vez, o invoke-webrequest baixo ele na maquina remota.
+<p align="center">
+<img width="843" height="241" alt="image" src="https://github.com/user-attachments/assets/853ab45e-73a1-4937-b807-4ed05a90ba39" />
+</p>
+
+Agora vou transferir para a segunda máquina.
+<p align="center">
+<img width="840" height="339" alt="image" src="https://github.com/user-attachments/assets/728f1845-d7f1-42ff-822a-57cca2ac9d10" />
+</p>
+Criando um compartilhamento para transferir o binário para segunda máquina
+Agora apenas copio o binário para um diretório
+<p align="center">
+<img width="840" height="355" alt="image" src="https://github.com/user-attachments/assets/af907190-c984-4e5e-b67e-70241d79e6a7" />
+</p>
+
+Com o binário já na segunda máquina, ja posso executar ele e receber a conexão no ligolo.
+<p align="center">
+<img width="1349" height="648" alt="image" src="https://github.com/user-attachments/assets/d4901ea7-5d21-41ea-90b3-bf44f6ab7545" />
+</p>
+Como podemos notar no painel, ja tenho uma segunda conexão, agora preciso apenas configurr a rota.
+<p align="center">
+<img width="1347" height="619" alt="image" src="https://github.com/user-attachments/assets/57bb0072-1688-482e-934c-9c3371a3ec08" />
+</p>
+Logo depois de criar uma nova rota, inicio ela.
+Agora volto a ultilizar o utilitário ping, para ver se consigo acessar maquina que foi comprometida nessa rede.
+<p align="center">
+<img width="894" height="231" alt="image" src="https://github.com/user-attachments/assets/995c32e9-5ec7-44ad-a5ac-61095bce107b" />
+</p>
+O teste mostra que tenho acesso a uma maquina comprometida em uma outra rede, agora vou acessar ela usando o rdp.
+<p align="center">
+<img width="1365" height="683" alt="image" src="https://github.com/user-attachments/assets/28e40bfe-96e7-46eb-b310-02d1ea485a4e" />
+</p>
+
+Podemos ver, inclusive no painel do remmina onde mostra a maquina que estamos acessando que são 3 ip's em redes diferentes.
+
+ROMANOS 11:36
 
 

@@ -81,4 +81,40 @@ Agora inicio um servidor python para enviar o arquivo para maquina que temos ace
 </p>
 Como ja tenho acesso a primeira maquina dentro da rede, uso o Invoke-WebRequest para baixar o binário para ela.
 
+<p align="center">
+<img width="896" height="245" alt="image" src="https://github.com/user-attachments/assets/9c83b7a8-fb0b-4ca7-aa70-1af37aed8a80" />
+</p>
+
+Agora com o binário na maquina comprometida, posso apenas executar ele e receber a conexão no painel do ligolo.
+
+<p align="center">
+<img width="1352" height="623" alt="image" src="https://github.com/user-attachments/assets/323a1eca-de98-412d-b932-338cb5a49557" />
+</p>
+
+Como podemos ver no painel do ligolo, recebo a conexão. E no painel chamado de interfaces,  a maquina tem duas interfaces de rede. Uma delas não tenho acesso. Agora vou configurar o pivot pra ela.
+
+Primeiro vou criar uma rota para a rede que não tenho acesso.
+<p align="center">
+<img width="1350" height="590" alt="image" src="https://github.com/user-attachments/assets/85b90842-dbfc-4794-b2f6-79c7d7cf4ed0" />
+</p>
+
+E a rede que não tenho acesso é 172.16.0.0/16
+
+<p align="center">
+<img width="440" height="330" alt="image" src="https://github.com/user-attachments/assets/9cc3d91d-4589-4823-8aa0-5df13bf3eafa" />
+</p>
+
+Agora preciso iniciar ela, vou dar um enter e iniciar o relay.
+
+<p align="center">
+<img width="1347" height="583" alt="image" src="https://github.com/user-attachments/assets/b7069be2-abde-434c-bba2-87bbc962c651" />
+</p>
+
+Agora preciso apenas confirmar que tenho acesso a rede e a próxima máquina. Para isso vou ultizaar o utilitário ping.
+
+<p align="center">
+<img width="911" height="240" alt="image" src="https://github.com/user-attachments/assets/0faf4ce5-c1c1-45ca-8797-2df0a25e1d35" />
+</p>
+
+
 

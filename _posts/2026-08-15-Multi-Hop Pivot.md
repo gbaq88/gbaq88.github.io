@@ -11,8 +11,9 @@ O multi-hop pivot é uma técnica crítica em Red Team porque supera limitaçõe
 Imagine que o invasor (atacante) está em uma rede externa. Ele compromete o Host A (primeiro pivô), que tem acesso a uma rede interna. Dentro dessa rede, ele compromete o Host B (segundo pivô), que por sua vez tem acesso a uma rede ainda mais restrita, onde está o Host C (alvo final). O fluxo de ataque segue a cadeia: Atacante -> Host A -> Host B -> Host C.
 
 <p align="center">
-<img width="465" height="350" alt="image" src="https://github.com/user-attachments/assets/454f50ba-7b42-4e12-996c-e57f072a936f" />
+<img width="1402" height="444" alt="image" src="https://github.com/user-attachments/assets/a9adee4e-fe91-41e3-bffe-463763e67f05" />
 </p>
+O diagrama de rede, basicamente assim. No print acima.
 
 Há muitas formas, ferramentas e técnicas para executar essa "manobra", porém nesse artigo vou esta usando o ligolo-mp (https://github.com/ttpreport/ligolo-mp).
 

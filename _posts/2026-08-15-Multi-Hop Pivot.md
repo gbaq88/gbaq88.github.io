@@ -13,7 +13,8 @@ Imagine que o invasor (atacante) está em uma rede externa. Ele compromete o Hos
 <p align="center">
 <img width="1402" height="444" alt="image" src="https://github.com/user-attachments/assets/a9adee4e-fe91-41e3-bffe-463763e67f05" />
 </p>
-O diagrama de rede, basicamente assim. No print acima.
+O diagrama de rede, basicamente assim. No print acima. O destino final vai ser comprometer o DC02, fazendo pivot através das redes que não tenho acesso.
+
 
 Há muitas formas, ferramentas e técnicas para executar essa "manobra", porém nesse artigo vou esta usando o ligolo-mp (https://github.com/ttpreport/ligolo-mp).
 
@@ -21,7 +22,7 @@ Há muitas formas, ferramentas e técnicas para executar essa "manobra", porém 
 <img width="723" height="534" alt="image" src="https://github.com/user-attachments/assets/c988b167-b300-468b-a481-f4dee713f087" />
 </p>
 
-Nesse artigo, vamos assumir que já conseguimos o acesso inicial a rede comprometendo uma máquina, com acesso administrador a ela. E na minha máquina parrot, verifico a instalação do ligolo-mp.
+Neste artigo, vamos assumir que já obtivemos acesso inicial à rede por meio do comprometimento de uma máquina, na qual possuímos privilégios administrativos. A partir da nossa máquina Parrot OS, iremos verificar a instalação e configuração do Ligolo-MP.
 
 <p align="center">
 <img width="680" height="401" alt="image" src="https://github.com/user-attachments/assets/04fd284a-ac2f-4d48-a69d-f6b210d02605" />
@@ -33,22 +34,22 @@ Como a instalação foi correta, agora apenas inicio ele, que vai abrir um paine
 <img width="1353" height="615" alt="image" src="https://github.com/user-attachments/assets/ee41bf57-3a7f-497e-99bc-f347e663124a" />
 </p>
 
-Podemos ver no painel que tem um usuário administrador. E precionando o enter no teclado, ja caimos direto no painel de administrador.
+Podemos ver no painel que podemos acessar o painel de agente com o usuário de admin, podendo apenas tecla o enter para acessar o painel.
 
 <p align="center">
 <img width="1348" height="621" alt="image" src="https://github.com/user-attachments/assets/d8e141ec-a5b4-4db7-ab70-6a61d54cec0b" />
 </p>
 No painel de administrador temos as seguintes funções:
 
-Ctrl-A para funções de administrador
+Ctrl-A - para funções de administrador
 
-Ctrl-N para gerar um binário de agente
+Ctrl-N - para gerar um binário de agente
 
-Ctrl-T para Traceroute
+Ctrl-T - para Traceroute
 
-Tab para alternar o foco do painel
+Tab - para alternar o foco do painel
 
-Ctrl-Q para sair
+Ctrl-Q - para sair
 
 Como primeiro passo vou digitar ctrl+N para gerar o agente.
 
@@ -58,7 +59,7 @@ Como primeiro passo vou digitar ctrl+N para gerar o agente.
 
 Save to: Especifica o caminho local onde o binário do agente gerado será salvo.
 
-Servers: define o endereço de retorno de chamada e a porta à qual o agente se conectará novamente. (Digite o endereço do servidor onde o ligolo-mp está sendo executado. Nesse caso, inserimos o IP do Kali, já que o Ligolo está sendo executado no Kali.)
+Servers: define o endereço de retorno de chamada e a porta à qual o agente se conectará novamente. (Digite o endereço do servidor onde o ligolo-mp está sendo executado. Nesse caso, inserimos o IP do Parrot, já que o Ligolo está sendo executado no Parrot.)
 
 Proxy: permite rotear o tráfego do agente através de um servidor proxy especificado (se necessário).
 
@@ -80,7 +81,7 @@ Agora inicio um servidor python para enviar o arquivo para maquina que temos ace
 <p align="center">
 <img width="912" height="318" alt="image" src="https://github.com/user-attachments/assets/c8cc26cc-eb30-4b81-ae48-3c25066c4ecb" />
 </p>
-Como ja tenho acesso a primeira maquina dentro da rede, uso o Invoke-WebRequest para baixar o binário para ela.
+Como já possuímos acesso à primeira máquina da rede, podemos utilizar o Invoke-WebRequest para realizar a transferência do binário diretamente para o host comprometido. Do ponto de vista de um atacante, essa abordagem permite utilizar recursos nativos do PowerShell para o download, evitando a necessidade de introduzir ferramentas adicionais apenas para realizar a transferência do payload.
 
 <p align="center">
 <img width="896" height="245" alt="image" src="https://github.com/user-attachments/assets/9c83b7a8-fb0b-4ca7-aa70-1af37aed8a80" />
@@ -111,13 +112,13 @@ Agora preciso iniciar ela, vou dar um enter e iniciar o relay.
 <img width="1347" height="583" alt="image" src="https://github.com/user-attachments/assets/b7069be2-abde-434c-bba2-87bbc962c651" />
 </p>
 
-Agora preciso apenas confirmar que tenho acesso a rede e a próxima máquina. Para isso vou ultizaar o utilitário ping.
+Agora, precisamos apenas validar a conectividade a partir do host comprometido, confirmando que temos acesso à rede interna e alcançamos a próxima máquina do ambiente. Para isso, utilizaremos o utilitário ping, verificando se o destino responde às requisições ICMP.
 
 <p align="center">
 <img width="911" height="240" alt="image" src="https://github.com/user-attachments/assets/0faf4ce5-c1c1-45ca-8797-2df0a25e1d35" />
 </p>
 
-Como podemos ver, tenho acesso a maquina comprometida na rede 172.16.0.0/16. Na qual antes não tinhamos acesso. Certo, agora vou acessar via RDP essa máquina.
+Como podemos ver, tenho acesso a maquina comprometida na rede 172.16.0.0/16. Na qual antes não tínhamos acesso. Certo, agora vou acessar via RDP essa máquina.
 
 <p align="center">
 <img width="1315" height="679" alt="image" src="https://github.com/user-attachments/assets/6083dd86-e480-4267-91bc-371f2561fe42" />
@@ -134,7 +135,9 @@ Confirmado, não tenho acesso a outra rede da maquina. Então vou configurar o l
 <img width="1360" height="645" alt="image" src="https://github.com/user-attachments/assets/82e0f52d-906e-494a-adc0-3df6f6f692ae" />
 </p>
 
-Agora vou adionar um redirector.
+Agora, vamos adicionar um redirector ao cenário. O redirector atua como um ponto intermediário de encaminhamento entre os diferentes segmentos do túnel, permitindo encadear múltiplos pivôs. Em um cenário de pivoting múltiplo, isso possibilita que o tráfego seja direcionado de uma máquina comprometida para outra, alcançando redes que não são diretamente acessíveis a partir da máquina do operador.
+
+Essa arquitetura permite construir uma cadeia de pivôs, na qual cada novo host comprometido pode servir como ponto de passagem para o próximo segmento da rede, mantendo a comunicação centralizada no operador.
 <p align="center">
 <img width="440" height="327" alt="image" src="https://github.com/user-attachments/assets/df355e26-4914-459c-bb7b-5b779ed1e4be" />
 </p>
@@ -149,7 +152,7 @@ Agora preciso criar um novo binario e transferir para essa maquina. O binário t
 <img width="837" height="562" alt="image" src="https://github.com/user-attachments/assets/7683b106-3b70-4a36-90ca-6ad8c3c50f78" />
 </p>
 
-E como no redirectory esta ouvindo na porta 4444 nosso binário tem que conectar nessa porta.
+E como no redirector esta ouvindo na porta 4444 nosso binário tem que conectar nessa porta.
 <p align="center">
 <img width="806" height="397" alt="image" src="https://github.com/user-attachments/assets/71f0c0d5-e9d4-4a0e-9e11-fa29edad5982" />
 </p>
@@ -168,8 +171,7 @@ Agora vou transferir para a segunda máquina.
 <p align="center">
 <img width="840" height="339" alt="image" src="https://github.com/user-attachments/assets/728f1845-d7f1-42ff-822a-57cca2ac9d10" />
 </p>
-Criando um compartilhamento para transferir o binário para segunda máquina
-Agora apenas copio o binário para um diretório
+Com o compartilhamento disponível entre os hosts, podemos realizar a transferência do binário para a segunda máquina. Nesse momento, basta copiar o arquivo para um diretório adequado no host de destino, preparando-o para a próxima etapa do pivoting.
 <p align="center">
 <img width="840" height="355" alt="image" src="https://github.com/user-attachments/assets/af907190-c984-4e5e-b67e-70241d79e6a7" />
 </p>
@@ -193,6 +195,18 @@ O teste mostra que tenho acesso a uma maquina comprometida em uma outra rede, ag
 </p>
 
 Podemos ver, inclusive no painel do remmina onde mostra a maquina que estamos acessando que são 3 ip's em redes diferentes.
+
+# Conclusão:
+Neste artigo, demonstramos na prática como utilizar o Ligolo-MP para construir um cenário de múltiplo pivoting, partindo da máquina do operador e atravessando diferentes segmentos da rede por meio de hosts comprometidos.
+Em operações de Red Team e campanhas conduzidas por APTs, esse tipo de técnica é utilizado para ampliar o alcance operacional dentro de uma infraestrutura comprometida. Em ambientes corporativos, é comum existirem diferentes segmentos, VLANs, sub-redes e controles de filtragem que impedem a comunicação direta entre o operador e determinados ativos. Nesse contexto, os hosts já comprometidos podem ser utilizados como pontos intermediários para encaminhar o tráfego entre redes distintas.
+
+Tecnicamente, o múltiplo pivoting consiste em encadear túneis e rotas de forma que cada novo ponto comprometido possibilite alcançar um segmento que anteriormente estava inacessível. O operador mantém o controle a partir de sua máquina, enquanto o tráfego é transportado através da cadeia de pivôs até chegar ao destino. O Ligolo-MP facilita essa arquitetura ao permitir o gerenciamento de múltiplos agentes, redirecionamentos e caminhos dentro de uma mesma operação.
+
+Essa abordagem também exige atenção ao gerenciamento das rotas, interfaces virtuais, sessões e encaminhamento de tráfego. Em uma operação real, uma configuração incorreta pode resultar em perda de conectividade, loops de roteamento ou exposição desnecessária da infraestrutura utilizada pelo Red Team.
+
+Do ponto de vista operacional, o objetivo não é simplesmente estabelecer conectividade, mas construir um caminho controlado e previsível através da infraestrutura comprometida. Esse conceito é especialmente relevante em operações de longa duração, nas quais o operador precisa manter acesso a diferentes segmentos sem depender de uma conexão direta com cada ativo.
+
+Assim, o múltiplo pivoting representa uma importante capacidade de movimentação e alcance dentro da rede, permitindo que uma operação avance progressivamente por segmentos que não seriam acessíveis diretamente. Ferramentas como o Ligolo-MP tornam esse processo mais organizado, oferecendo ao operador uma infraestrutura de túneis capaz de acompanhar a evolução da operação e dos diferentes pontos de acesso obtidos.
 
 ROMANOS 11:36
 
